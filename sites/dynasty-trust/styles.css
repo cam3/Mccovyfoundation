@@ -1,5 +1,5 @@
 /* ==========================================================================
-   McCovy Dynasty Trust - Styles
+   McCovy Dynasty Trust - Enhanced Styles
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap');
@@ -13,14 +13,20 @@
 
 :root {
   --color-primary: #0A1F44;
+  --color-primary-light: #132D5E;
   --color-secondary: #6B7280;
   --color-accent: #C7CCD6;
+  --color-accent-gold: #B8A067;
   --color-background: #FAFBFC;
   --color-white: #FFFFFF;
   --color-border: #E5E7EB;
 
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --shadow-sm: 0 1px 2px rgba(10, 31, 68, 0.05);
+  --shadow-md: 0 4px 12px rgba(10, 31, 68, 0.08);
+  --shadow-lg: 0 12px 40px rgba(10, 31, 68, 0.12);
 }
 
 /* ==========================================================================
@@ -48,9 +54,10 @@ a {
    ========================================================================== */
 
 .header {
-  background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-border);
-  padding: 1.25rem 0;
+  background-color: var(--color-primary);
+  padding: 1rem 0;
+  position: relative;
+  z-index: 100;
 }
 
 .header-inner {
@@ -63,25 +70,50 @@ a {
   font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-white);
   text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.logo-accent {
+  color: var(--color-accent-gold);
 }
 
 .nav {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .nav-link {
-  font-size: 0.9375rem;
-  color: var(--color-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-accent);
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent-gold);
+  transition: width 0.2s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -89,24 +121,70 @@ a {
    ========================================================================== */
 
 .hero {
-  padding: 5rem 0 4rem;
+  position: relative;
+  padding: 8rem 0 7rem;
   text-align: center;
-  background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-primary);
+  background-image:
+    linear-gradient(135deg, rgba(10, 31, 68, 0.95) 0%, rgba(19, 45, 94, 0.9) 100%),
+    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background-color: rgba(184, 160, 103, 0.15);
+  border: 1px solid var(--color-accent-gold);
+  border-radius: 2px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-gold);
+  margin-bottom: 2rem;
 }
 
 .hero-title {
-  font-size: 2.5rem;
-  margin-bottom: 0.75rem;
-  color: var(--color-primary);
+  font-size: 3.25rem;
+  margin-bottom: 1rem;
+  color: var(--color-white);
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
-  color: var(--color-secondary);
+  color: var(--color-accent);
   font-weight: 400;
-  max-width: 640px;
+  max-width: 600px;
   margin: 0 auto;
+  line-height: 1.7;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-gold), transparent);
+  margin: 2rem auto 0;
 }
 
 /* ==========================================================================
@@ -114,23 +192,123 @@ a {
    ========================================================================== */
 
 .section {
-  padding: 4rem 0;
+  padding: 5rem 0;
+}
+
+.section-light {
+  background-color: var(--color-white);
+}
+
+.section-border {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-gold);
+  margin-bottom: 0.75rem;
 }
 
 .section-title {
-  font-size: 1.75rem;
-  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.section-title-line {
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-accent-gold);
+  margin: 0 auto;
+}
+
+.content-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .body-text {
   font-size: 1.0625rem;
-  line-height: 1.75;
+  line-height: 1.85;
   color: var(--color-secondary);
   max-width: 720px;
 }
 
+.body-text-centered {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 .body-text + .body-text {
   margin-top: 1.5rem;
+}
+
+/* Feature Grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature-item {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.feature-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  border-radius: 4px;
+}
+
+.feature-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--color-accent-gold);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.feature-title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--color-primary);
+}
+
+.feature-text {
+  font-size: 0.9375rem;
+  color: var(--color-secondary);
+  line-height: 1.6;
 }
 
 /* ==========================================================================
@@ -139,29 +317,85 @@ a {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.25fr;
   gap: 4rem;
   margin-top: 2rem;
 }
 
-.contact-info h3 {
-  font-size: 1.125rem;
-  margin-bottom: 1rem;
+.contact-info-card {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  border-radius: 4px;
+  padding: 2.5rem;
+  color: var(--color-white);
 }
 
-.contact-info p {
-  color: var(--color-secondary);
+.contact-info-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--color-white);
+}
+
+.contact-info-card p {
+  color: var(--color-accent);
   line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.contact-info-card p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-detail {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.contact-detail-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-form .form-label {
+  font-weight: 500;
+  color: var(--color-primary);
+  font-size: 0.875rem;
+}
+
+.contact-form .form-input,
+.contact-form .form-textarea {
+  border-color: var(--color-border);
+  background-color: var(--color-background);
 }
 
 .contact-form .form-button {
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.contact-form .form-button:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .contact-form .form-input:focus,
 .contact-form .form-textarea:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(10, 31, 68, 0.1);
+  background-color: var(--color-white);
 }
 
 /* ==========================================================================
@@ -171,7 +405,7 @@ a {
 .footer {
   background-color: var(--color-primary);
   color: var(--color-accent);
-  padding: 2.5rem 0;
+  padding: 3rem 0;
   margin-top: auto;
 }
 
@@ -182,11 +416,34 @@ a {
   font-size: 0.875rem;
 }
 
+.footer-brand {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+}
+
 .footer-legal {
-  max-width: 480px;
+  max-width: 400px;
   font-size: 0.8125rem;
-  opacity: 0.8;
+  opacity: 0.7;
   line-height: 1.6;
+}
+
+.footer-meta {
+  text-align: right;
+}
+
+.footer-copyright {
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.footer-established {
+  font-size: 0.75rem;
+  color: var(--color-accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 /* ==========================================================================
@@ -199,30 +456,43 @@ a {
     gap: 1rem;
   }
 
+  .nav {
+    gap: 1.5rem;
+  }
+
   .hero {
-    padding: 3rem 0;
+    padding: 5rem 0 4rem;
   }
 
   .hero-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   .hero-subtitle {
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
   }
 
   .section {
-    padding: 3rem 0;
+    padding: 3.5rem 0;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 
   .footer-inner {
     flex-direction: column;
     gap: 1.5rem;
+    text-align: center;
+  }
+
+  .footer-meta {
     text-align: center;
   }
 }

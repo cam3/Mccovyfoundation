@@ -13,7 +13,10 @@
 
     <header class="header">
       <div class="container header-inner">
-        <a href="index.html" class="logo">McCovy Holdings, LLC</a>
+        <a href="index.html" class="logo">
+          <span class="logo-mark"></span>
+          McCovy Holdings, LLC
+        </a>
         <nav class="nav">
           <a href="index.html" class="nav-link">Home</a>
           <a href="about.html" class="nav-link">About</a>
@@ -24,32 +27,34 @@
 
     <main class="main-content">
       <section class="hero">
-        <div class="container">
+        <div class="container" style="text-align: center;">
+          <span class="hero-eyebrow">Correspondence</span>
           <h1 class="hero-title">Contact</h1>
           <p class="hero-subtitle">Institutional Inquiries Only</p>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section section-light">
         <div class="container">
           <div class="contact-grid">
 
-            <div class="contact-info">
-              <h3>Notice</h3>
+            <div class="contact-info-card">
+              <h3>Important Notice</h3>
               <p>
                 McCovy Holdings, LLC does not provide consumer-facing services. This contact form is intended for institutional inquiries, counterparty communications, and official correspondence only.
               </p>
-              <br>
-              <h3>Mailing Address</h3>
-              <p>
-                McCovy Holdings, LLC<br>
-                [Address Line 1]<br>
-                [City, State ZIP]
-              </p>
+              <div class="contact-detail">
+                <p class="contact-detail-label">Mailing Address</p>
+                <p>
+                  McCovy Holdings, LLC<br>
+                  [Address Line 1]<br>
+                  [City, State ZIP]
+                </p>
+              </div>
             </div>
 
-            <div class="contact-form">
-              <form action="https://formspree.io/f/mgoebjok" method="POST">
+            <div class="contact-form-card">
+              <form class="contact-form" action="https://formspree.io/f/mgoebjok" method="POST">
                 <div class="form-group">
                   <label for="name" class="form-label">Full Name</label>
                   <input type="text" id="name" name="name" class="form-input" required>
@@ -86,10 +91,18 @@
 
     <footer class="footer">
       <div class="container footer-inner">
-        <p>&copy; 2025 McCovy Holdings, LLC. All rights reserved.</p>
-        <p class="footer-legal">
-          This entity does not provide consumer-facing services and operates exclusively as an institutional platform.
-        </p>
+        <div class="footer-info">
+          <p class="footer-brand">
+            <span class="logo-mark"></span>
+            McCovy Holdings, LLC
+          </p>
+          <p class="footer-legal">
+            This entity does not provide consumer-facing services and operates exclusively as an institutional platform.
+          </p>
+        </div>
+        <div class="footer-meta">
+          <p class="footer-copyright">&copy; 2025 McCovy Holdings, LLC</p>
+        </div>
       </div>
     </footer>
 
